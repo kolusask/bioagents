@@ -137,7 +137,11 @@ class StatementQuery(object):
         else:
             self.stmt_type = verb
 
-        self.ent_type = ent_type
+        if 'ent_type' in params:
+            self.ent_type = params['ent_type']
+            params.pop('ent_type')
+        else:
+            self.ent_type = ent_type
         self.filter_agents = params.pop('filter_agents', [])
         self.context_agents = params.pop('context_agents', [])
 
